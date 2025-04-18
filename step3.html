@@ -2,36 +2,49 @@
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>提示3</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
         font-family: sans-serif;
-        text-align: center;
-        padding: 2em;
+        margin: 0;
+        padding: 1.5em;
         background: #fffbe6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .content {
         max-width: 600px;
-        margin: auto;
+        width: 100%;
         font-size: 1.2em;
+        text-align: center;
       }
-      .hint {
-        margin-top: 2em;
-        font-weight: bold;
-      }
-      #reader {
-        width: 300px;
-        margin: 2em auto;
-        display: none;
-      }
+      .hint,
       .btn {
-        padding: 0.7em 1.2em;
-        font-size: 1em;
-        background: #2196f3;
-        color: white;
+        margin-top: 1.5em;
+        padding: 1em 1.5em;
+        font-size: 1.1em;
         border: none;
         border-radius: 8px;
         cursor: pointer;
+      }
+      .hint {
+        background-color: #ff9800;
+        color: white;
+      }
+      .btn {
+        background: #2196f3;
+        color: white;
+      }
+      #reader {
+        width: 100%;
+        max-width: 320px;
+        margin: 1.5em auto;
+        display: none;
       }
     </style>
     <script
@@ -46,19 +59,19 @@
       <p id="verse">
         "他們來到一個地方，名叫客西馬尼，<br />
         耶穌對門徒說：你們坐在這裡，等我禱告。<br />
-        於是帶著彼得，雅各，約翰同去，就驚恐起來，極其難過。<br />
-        對他們說：我心裡甚是憂傷，幾乎要死，<br />你們在這裡，等候儆醒。"
+        於是帶著彼得，雅各，約翰同去，<br />就驚恐起來，極其難過。<br />
+        對他們說：我心裡甚是憂傷，幾乎要死，<br />
+        你們在這裡，等候儆醒。"
       </p>
       <button class="hint" onclick="alert('耶穌和門徒們在哪裡禱告？')">
         小提示
       </button>
-      <p></p>
       <button class="btn" onclick="startScan()">掃描下一個 QR Code</button>
       <div id="reader"></div>
     </div>
 
     <script>
-      const currentStep = 3; // 每頁需手動替換為對應關卡 1~7
+      const currentStep = 3;
       const expectedUrl = `step${currentStep + 1}.html`;
       const savedStep = parseInt(localStorage.getItem("easter_step") || "1");
 

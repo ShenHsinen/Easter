@@ -2,36 +2,49 @@
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>提示6</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
         font-family: sans-serif;
-        text-align: center;
-        padding: 2em;
+        margin: 0;
+        padding: 1.5em;
         background: #fffbe6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .content {
         max-width: 600px;
-        margin: auto;
+        width: 100%;
         font-size: 1.2em;
+        text-align: center;
       }
-      .hint {
-        margin-top: 2em;
-        font-weight: bold;
-      }
-      #reader {
-        width: 300px;
-        margin: 2em auto;
-        display: none;
-      }
+      .hint,
       .btn {
-        padding: 0.7em 1.2em;
-        font-size: 1em;
-        background: #2196f3;
-        color: white;
+        margin-top: 1.5em;
+        padding: 1em 1.5em;
+        font-size: 1.1em;
         border: none;
         border-radius: 8px;
         cursor: pointer;
+      }
+      .hint {
+        background-color: #ff9800;
+        color: white;
+      }
+      .btn {
+        background: #2196f3;
+        color: white;
+      }
+      #reader {
+        width: 100%;
+        max-width: 320px;
+        margin: 1.5em auto;
+        display: none;
       }
     </style>
     <script
@@ -50,12 +63,11 @@
         彼此說：誰給我們把石頭從墓門輥開呢？<br />
         那石頭原來很大，他們抬頭一看，卻見石頭已經輥開了。<br />
         他們進了墳墓，看見一個少年人坐在右邊，穿著白袍，<br />
-        就甚驚恐。
+        就甚驚恐。"
       </p>
       <button class="hint" onclick="alert('少年人所穿的是什麼？')">
         小提示
       </button>
-      <p></p>
       <button class="btn" onclick="startScan()">掃描下一個 QR Code</button>
       <div id="reader"></div>
     </div>
