@@ -54,7 +54,7 @@
   </head>
   <body>
     <div class="content">
-      <h3>耶穌被葬後的第三天早上</h3>
+      <h2>耶穌被葬後的第三天早上</h2>
       <h4 id="chapter">馬可福音16章1~5節</h4>
       <p id="verse">
         "過了安息日，抹大拉的馬利亞，<br />
@@ -90,7 +90,11 @@
       function startScan() {
         const readerElement = document.getElementById("reader");
         readerElement.style.display = "block";
-        readerElement.scrollIntoView({ behavior: "smooth" }); // ⬅️ 這一行讓畫面平滑捲動
+
+        // 延遲 100 毫秒後再滑動到掃描區
+        setTimeout(() => {
+          readerElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
 
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
