@@ -5,46 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>提示2</title>
     <style>
-      * {
-        box-sizing: border-box;
-      }
       body {
         font-family: sans-serif;
-        margin: 0;
-        padding: 1.5em;
+        text-align: center;
+        padding: 2em;
         background: #fffbe6;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        font-size: 1.1em;
+        line-height: 1.6;
       }
+
       .content {
         max-width: 600px;
-        width: 100%;
-        font-size: 1.2em;
-        text-align: center;
+        margin: auto;
+        font-size: 1em;
       }
-      .hint,
-      .btn {
-        margin-top: 1.5em;
-        padding: 1em 1.5em;
-        font-size: 1.1em;
+
+      h2 {
+        font-size: 1.5em;
+        margin-bottom: 0.5em;
+      }
+
+      h4 {
+        font-size: 1.2em;
+        margin-bottom: 1em;
+        color: #555;
+      }
+
+      #verse {
+        margin: 1em 0;
+        padding: 0 1em;
+      }
+
+      .hint {
+        margin: 1.5em 0;
+        padding: 0.7em 1.2em;
+        font-size: 1em;
+        background: #ff9800;
+        color: white;
         border: none;
         border-radius: 8px;
         cursor: pointer;
       }
-      .hint {
-        background-color: #ff9800;
-        color: white;
-      }
+
       .btn {
+        padding: 0.8em 1.5em;
+        font-size: 1em;
         background: #2196f3;
         color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 1.5em;
       }
+
       #reader {
         width: 100%;
         max-width: 320px;
-        margin: 1.5em auto;
+        margin: 2em auto;
         display: none;
+      }
+
+      @media (max-width: 480px) {
+        body {
+          font-size: 1em;
+          padding: 1em;
+        }
+
+        .btn,
+        .hint {
+          font-size: 1em;
+          width: 90%;
+        }
       }
     </style>
     <script
@@ -91,7 +122,7 @@
         // 延遲 100 毫秒後再滑動到掃描區
         setTimeout(() => {
           readerElement.scrollIntoView({ behavior: "smooth", block: "center" });
-        }, 100);
+        }, 1000);
 
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
