@@ -1,8 +1,8 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>復活節尋寶遊戲 - 開始</title>
     <style>
       body {
@@ -10,26 +10,49 @@
         text-align: center;
         padding: 2em;
         background: #f0f8ff;
+        font-size: 1.2em;
       }
+
+      img {
+        max-width: 50%;
+        height: auto;
+        margin: 1em 0;
+        border-radius: 12px;
+      }
+
       .btn {
-        font-size: 1.5em;
+        font-size: 1.2em;
         padding: 1em 2em;
         background: #4caf50;
         color: white;
         border: none;
         border-radius: 8px;
         cursor: pointer;
+        max-width: 90%;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          font-size: 1.1em;
+          padding: 1em;
+        }
+
+        .btn {
+          font-size: 1.1em;
+          padding: 0.8em 1.5em;
+        }
       }
     </style>
   </head>
   <body>
     <h1>復活節尋寶遊戲</h1>
+    <img src="Easterpng.png" alt="復活節封面圖" />
     <p>準備好了嗎？讓我們開始尋寶冒險！</p>
     <button class="btn" onclick="startGame()">開始遊戲</button>
 
     <script>
       function startGame() {
-        localStorage.setItem("easter_step", "2"); // 開始遊戲後預設進入 step1，下一步需掃描 step2
+        localStorage.setItem("easter_step", "2");
         window.location.href = "step1.html";
       }
     </script>
