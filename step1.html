@@ -85,7 +85,7 @@
   </head>
   <body>
     <div class="content">
-      <h2>耶穌和門徒們要共進逾越節大餐</h2>
+      <h3>耶穌和門徒們要共進逾越節大餐</h3>
       <h4 id="chapter">馬可福音14章12節</h4>
       <p id="verse">
         "除酵節的第一天，<br />
@@ -115,7 +115,10 @@
       let html5QrCode;
 
       function startScan() {
-        document.getElementById("reader").style.display = "block";
+        const readerElement = document.getElementById("reader");
+        readerElement.style.display = "block";
+        readerElement.scrollIntoView({ behavior: "smooth" }); // ⬅️ 這一行讓畫面平滑捲動
+
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
           .start(
