@@ -54,15 +54,15 @@
   </head>
   <body>
     <div class="content">
-      <h2>最終彼拉多在民眾給的壓力下<br />將耶穌釘上十字架</h2>
+      <h3>最終彼拉多在民眾給的壓力下<br />將耶穌釘上十字架</h3>
       <h4 id="chapter">馬可福音15章37~39節</h4>
       <p id="verse">
         "耶穌大聲喊叫，氣就斷了。<br />殿裡的幔子，從上到下裂為兩半。<br />
-        對面站著的百夫長，看見耶穌這樣喊叫斷氣，<br />就說：這人真是神的兒子。"
+        對面站著的百夫長，<br />看見耶穌這樣喊叫斷氣，<br />就說：這人真是神的兒子。"
       </p>
       <h4 id="chapter">馬可福音15章46節</h4>
       <p id="verse">
-        "約瑟買了細麻布，把耶穌取下來，用細麻布裹好，<br />
+        "約瑟買了細麻布，<br />把耶穌取下來，用細麻布裹好，<br />
         安放在磐石中鑿出來的墳墓裡，<br />
         又輥過一塊石頭來擋住墓門。"
       </p>
@@ -87,7 +87,10 @@
       let html5QrCode;
 
       function startScan() {
-        document.getElementById("reader").style.display = "block";
+        const readerElement = document.getElementById("reader");
+        readerElement.style.display = "block";
+        readerElement.scrollIntoView({ behavior: "smooth" }); // ⬅️ 這一行讓畫面平滑捲動
+
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
           .start(

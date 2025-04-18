@@ -54,13 +54,13 @@
   </head>
   <body>
     <div class="content">
-      <h2>禱告後，猶大出賣了耶穌<br />將耶穌交給羅馬巡撫-彼拉多</h2>
+      <h3>禱告後，猶大出賣了耶穌<br />將耶穌交給羅馬巡撫-彼拉多</h3>
       <h4 id="chapter">馬可福音15章9~13節</h4>
       <p id="verse">
-        "彼拉多說：你們要我釋放猶太人的王給你們嗎？<br />
-        他原曉得祭司長是因為嫉妒才把耶穌解了來。<br />
-        只是祭司長挑唆眾人，寧可釋放巴拉巴給他們。<br />
-        彼拉多又說：那麼樣你們所稱為猶太人的王，我怎麼辦他呢？<br />
+        "彼拉多說：<br />你們要我釋放猶太人的王給你們嗎？<br />
+        他原曉得祭司長是因為嫉妒<br />才把耶穌解了來。<br />
+        只是祭司長挑唆眾人，<br />寧可釋放巴拉巴給他們。<br />
+        彼拉多又說：<br />那麼樣你們所稱為猶太人的王，<br />我怎麼辦他呢？<br />
         他們又喊著說：把他釘十字架。"
       </p>
       <button class="hint" onclick="alert('眾人要求彼拉多怎樣處置耶穌？')">
@@ -84,7 +84,10 @@
       let html5QrCode;
 
       function startScan() {
-        document.getElementById("reader").style.display = "block";
+        const readerElement = document.getElementById("reader");
+        readerElement.style.display = "block";
+        readerElement.scrollIntoView({ behavior: "smooth" }); // ⬅️ 這一行讓畫面平滑捲動
+
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
           .start(

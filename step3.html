@@ -54,11 +54,11 @@
   </head>
   <body>
     <div class="content">
-      <h2>晚餐後他們唱了詩，就往橄欖山去了</h2>
+      <h3>晚餐後他們唱了詩<br />就往橄欖山去了</h3>
       <h4 id="chapter">馬可福音14章32~34節</h4>
       <p id="verse">
         "他們來到一個地方，名叫客西馬尼，<br />
-        耶穌對門徒說：你們坐在這裡，等我禱告。<br />
+        耶穌對門徒說：<br />你們坐在這裡，等我禱告。<br />
         於是帶著彼得，雅各，約翰同去，<br />就驚恐起來，極其難過。<br />
         對他們說：我心裡甚是憂傷，幾乎要死，<br />
         你們在這裡，等候儆醒。"
@@ -84,7 +84,10 @@
       let html5QrCode;
 
       function startScan() {
-        document.getElementById("reader").style.display = "block";
+        const readerElement = document.getElementById("reader");
+        readerElement.style.display = "block";
+        readerElement.scrollIntoView({ behavior: "smooth" }); // ⬅️ 這一行讓畫面平滑捲動
+
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
           .start(

@@ -54,15 +54,17 @@
   </head>
   <body>
     <div class="content">
-      <h2>耶穌被葬後的第三天早上</h2>
+      <h3>耶穌被葬後的第三天早上</h3>
       <h4 id="chapter">馬可福音16章1~5節</h4>
       <p id="verse">
-        "過了安息日，抹大拉的馬利亞，和雅各的母親馬利亞，<br />
-        並撒羅米，買了香膏，要去膏耶穌的身體。<br />
-        七日的第一日清早，出太陽的時候，他們來到墳墓那裡。<br />
+        "過了安息日，抹大拉的馬利亞，<br />
+        和雅各的母親馬利亞，並撒羅米，<br />
+        買了香膏，要去膏耶穌的身體。<br />
+        七日的第一日清早，出太陽的時候，<br />他們來到墳墓那裡。<br />
         彼此說：誰給我們把石頭從墓門輥開呢？<br />
-        那石頭原來很大，他們抬頭一看，卻見石頭已經輥開了。<br />
-        他們進了墳墓，看見一個少年人坐在右邊，穿著白袍，<br />
+        那石頭原來很大，他們抬頭一看，<br />
+        卻見石頭已經輥開了。他們進了墳墓，<br />
+        看見一個少年人坐在右邊，穿著白袍，<br />
         就甚驚恐。"
       </p>
       <button class="hint" onclick="alert('少年人所穿的是什麼？')">
@@ -86,7 +88,10 @@
       let html5QrCode;
 
       function startScan() {
-        document.getElementById("reader").style.display = "block";
+        const readerElement = document.getElementById("reader");
+        readerElement.style.display = "block";
+        readerElement.scrollIntoView({ behavior: "smooth" }); // ⬅️ 這一行讓畫面平滑捲動
+
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
           .start(
