@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>提示6</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        padding: 2em;
+        background: #fffbe6;
+      }
+      .content {
+        max-width: 600px;
+        margin: auto;
+        font-size: 1.2em;
+      }
+      .hint {
+        margin-top: 2em;
+        font-weight: bold;
+      }
+      #reader {
+        width: 300px;
+        margin: 2em auto;
+        display: none;
+      }
+      .btn {
+        padding: 0.7em 1.2em;
+        font-size: 1em;
+        background: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+    <script
+      src="https://unpkg.com/html5-qrcode"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body>
+    <div class="content">
+      <h2>耶穌被葬後的第三天早上</h2>
+      <h4 id="chapter">馬可福音16章1~5節</h4>
+      <p id="verse">
+        "過了安息日，抹大拉的馬利亞，和雅各的母親馬利亞，<br />
+        並撒羅米，買了香膏，要去膏耶穌的身體。<br />
+        七日的第一日清早，出太陽的時候，他們來到墳墓那裡。<br />
+        彼此說：誰給我們把石頭從墓門輥開呢？<br />
+        那石頭原來很大，他們抬頭一看，卻見石頭已經輥開了。<br />
+        他們進了墳墓，看見一個少年人坐在右邊，穿著白袍，<br />
+        就甚驚恐。
+      </p>
+      <button class="hint" onclick="alert('少年人所穿的是什麼？')">
+        小提示
+      </button>
+      <p></p>
+      <button class="btn" onclick="startScan()">掃描下一個 QR Code</button>
+      <div id="reader"></div>
+    </div>
+
+    <script>
+      const currentStep = 6; // 每頁需手動替換為對應關卡 1~7
+      const expectedUrl = `step${currentStep + 1}.html`;
+      const savedStep = parseInt(localStorage.getItem("easter_step") || "1");
+
+      if (savedStep !== currentStep + 1) {
+        alert("你還沒完成前面的關卡喔！請從第一關開始！");
+        localStorage.setItem("easter_step", "2");
+        window.location.href = "step1.html";
+      }
+
+      let html5QrCode;
+
+      function startScan() {
+        document.getElementById("reader").style.display = "block";
+        html5QrCode = new Html5Qrcode("reader");
+        html5QrCode
+          .start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: 250 },
+            (decodedText) => {
+              const url = new URL(decodedText);
+              const filename = url.pathname.split("/").pop();
+              html5QrCode.stop();
+
+              if (filename === expectedUrl) {
+                localStorage.setItem(
+                  "easter_step",
+                  (currentStep + 2).toString()
+                );
+                window.location.href = filename;
+              } else {
+                alert("掃錯順序啦，要從第一關重新開始喔！");
+                localStorage.setItem("easter_step", "2");
+                window.location.href = "step1.html";
+              }
+            },
+            (errorMessage) => {
+              // 忽略錯誤訊息
+            }
+          )
+          .catch((err) => {
+            console.error("啟動掃描器錯誤：", err);
+          });
+      }
+    </script>
+  </body>
+</html>

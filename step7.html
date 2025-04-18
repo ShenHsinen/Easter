@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>最終頁</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        padding: 2em;
+        background: #fffbe6;
+      }
+      .content {
+        max-width: 600px;
+        margin: auto;
+        font-size: 1.2em;
+      }
+      .hint {
+        margin-top: 2em;
+        font-weight: bold;
+      }
+      #reader {
+        width: 300px;
+        margin: 2em auto;
+        display: none;
+      }
+      .btn {
+        padding: 0.7em 1.2em;
+        font-size: 1em;
+        background: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+    <script
+      src="https://unpkg.com/html5-qrcode"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body>
+    <div class="content">
+      <h2>耶穌已經復活了！</h2>
+      <h4 id="chapter">馬可福音16章6節</h4>
+      <p id="verse">
+        "那少年人對他們說：不要驚恐，<br />
+        你們尋找那釘十字架的拿撒勒人耶穌，他已經復活了，<br />
+        不在這裡，請看安放他的地方。"
+      </p>
+
+      <h4 id="chapter">約翰福音3章16節</h4>
+      <p id="verse">
+        "神愛世人，甚至將他的獨生子賜給他們，<br />
+        叫一切信他的，不至滅亡，反得永生。"
+      </p>
+      <div id="reader"></div>
+    </div>
+
+    <script>
+      const currentStep = 7; // 每頁需手動替換為對應關卡 1~7
+      const expectedUrl = `step${currentStep + 1}.html`;
+      const savedStep = parseInt(localStorage.getItem("easter_step") || "1");
+
+      if (savedStep !== currentStep + 1) {
+        alert("你還沒完成前面的關卡喔！請從第一關開始！");
+        localStorage.setItem("easter_step", "2");
+        window.location.href = "step1.html";
+      }
+
+      let html5QrCode;
+
+      function startScan() {
+        document.getElementById("reader").style.display = "block";
+        html5QrCode = new Html5Qrcode("reader");
+        html5QrCode
+          .start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: 250 },
+            (decodedText) => {
+              const url = new URL(decodedText);
+              const filename = url.pathname.split("/").pop();
+              html5QrCode.stop();
+
+              if (filename === expectedUrl) {
+                localStorage.setItem(
+                  "easter_step",
+                  (currentStep + 2).toString()
+                );
+                window.location.href = filename;
+              } else {
+                alert("掃錯順序啦，要從第一關重新開始喔！");
+                localStorage.setItem("easter_step", "2");
+                window.location.href = "step1.html";
+              }
+            },
+            (errorMessage) => {
+              // 忽略錯誤訊息
+            }
+          )
+          .catch((err) => {
+            console.error("啟動掃描器錯誤：", err);
+          });
+      }
+    </script>
+  </body>
+</html>
