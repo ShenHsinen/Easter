@@ -147,11 +147,16 @@
           .then(() => {
             // 等相機啟動成功後，再平滑捲動到掃描框
             setTimeout(() => {
-              readerElement.scrollIntoView({
+              const rect = readerElement.getBoundingClientRect();
+              const absoluteTop = window.pageYOffset + rect.top;
+              const centerY =
+                absoluteTop - window.innerHeight / 2 + rect.height / 2;
+
+              window.scrollTo({
+                top: centerY,
                 behavior: "smooth",
-                block: "center",
               });
-            }, 1000); // 可以根據你裝置的速度調整時間
+            }, 500); // 可以根據你裝置的速度調整時間
           })
           .catch((err) => {
             console.error("啟動掃描器錯誤：", err);
