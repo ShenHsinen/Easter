@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>提示5</title>
     <style>
       body {
@@ -121,11 +121,6 @@
         const readerElement = document.getElementById("reader");
         readerElement.style.display = "block";
 
-        // 延遲 100 毫秒後再滑動到掃描區
-        setTimeout(() => {
-          readerElement.scrollIntoView({ behavior: "smooth", block: "center" });
-        }, 1000);
-
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode
           .start(
@@ -149,9 +144,18 @@
               }
             },
             (errorMessage) => {
-              // 忽略錯誤訊息
+              // 可以忽略掃不到 QR 的錯誤
             }
           )
+          .then(() => {
+            // 等相機啟動成功後，再平滑捲動到掃描框
+            setTimeout(() => {
+              readerElement.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }, 300); // 可以根據你裝置的速度調整時間
+          })
           .catch((err) => {
             console.error("啟動掃描器錯誤：", err);
           });
